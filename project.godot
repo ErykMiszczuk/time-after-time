@@ -16,7 +16,19 @@ _global_script_class_icons={
 [application]
 
 config/name="time-after-time"
+run/main_scene="res://App.tscn"
+run/low_processor_mode=true
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=320
+window/dpi/allow_hidpi=true
+window/handheld/orientation="sensor"
+
+[gui]
+
+theme/use_hidpi=true
 
 [rendering]
 

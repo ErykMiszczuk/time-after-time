@@ -1,0 +1,49 @@
+[gd_resource type="Theme" load_steps=5 format=2]
+
+[ext_resource path="res://roboto_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sheet_style.tres" type="StyleBox" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.960784, 0.941176, 0.941176, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.168627, 0.321569, 0.913725, 1 )
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 8.0
+bg_color = Color( 0.952941, 0.917647, 0.917647, 1 )
+border_width_bottom = 1
+border_blend = true
+
+[resource]
+default_font = ExtResource( 1 )
+Label/colors/font_color = Color( 0.109804, 0.101961, 0.101961, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
+LineEdit/colors/font_color = Color( 0.0823529, 0.0784314, 0.0784314, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
+LineEdit/colors/selection_color = Color( 0.211765, 0.407843, 0.960784, 1 )
+LineEdit/constants/minimum_spaces = 24
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource( 1 )
+LineEdit/styles/normal = SubResource( 2 )
+LineEdit/styles/read_only = null
+Panel/styles/panel = ExtResource( 2 )
