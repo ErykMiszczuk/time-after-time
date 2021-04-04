@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://material_design_theme.tres" type="Theme" id=1]
 [ext_resource path="res://card_style.tres" type="StyleBox" id=2]
 [ext_resource path="res://roboto_bold_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://fab_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://fab_pressed_style.tres" type="StyleBox" id=5]
+[ext_resource path="res://AddTimerDialog.gd" type="Script" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 8.0
@@ -14,8 +15,8 @@ content_margin_bottom = 8.0
 bg_color = Color( 0.207843, 0.294118, 0.835294, 1 )
 shadow_size = 5
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.176471, 0.160784, 0.160784, 0.486275 )
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0.478431 )
 
 [node name="App" type="Control"]
 anchor_right = 1.0
@@ -68,7 +69,7 @@ margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollList__Items" type="VBoxContainer" parent="AppBackground/Control/AppView/ScrollList"]
+[node name="Items" type="VBoxContainer" parent="AppBackground/Control/AppView/ScrollList"]
 
 [node name="AddTimerBtn" type="Button" parent="AppBackground/Control"]
 anchor_left = 1.0
@@ -89,14 +90,16 @@ __meta__ = {
 }
 
 [node name="AddTimerDialog" type="PopupDialog" parent="AppBackground/Control"]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="AppBackground/Control/AddTimerDialog"]
+[node name="DialogBackground" type="Panel" parent="AppBackground/Control/AddTimerDialog"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -110,7 +113,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="AppBackground/Control/AddTimerDialog/Panel"]
+[node name="DialogTitle" type="Label" parent="AppBackground/Control/AddTimerDialog/DialogBackground"]
 margin_left = 16.0229
 margin_top = 13.6633
 margin_right = 121.023
@@ -121,7 +124,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LineEdit" type="LineEdit" parent="AppBackground/Control/AddTimerDialog/Panel"]
+[node name="LineEdit" type="LineEdit" parent="AppBackground/Control/AddTimerDialog/DialogBackground"]
 margin_left = 9.41586
 margin_top = 44.9668
 margin_right = 249.416
@@ -132,18 +135,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ToolButton" type="ToolButton" parent="AppBackground/Control/AddTimerDialog/Panel"]
+[node name="CancelBtn" type="ToolButton" parent="AppBackground/Control/AddTimerDialog/DialogBackground"]
 margin_left = 107.592
 margin_top = 130.543
 margin_right = 190.592
 margin_bottom = 165.543
-custom_colors/font_color = Color( 0.321569, 0.415686, 0.913725, 1 )
+custom_colors/font_color = Color( 0.207843, 0.294118, 0.835294, 1 )
 text = "CANCEL"
 
-[node name="ToolButton2" type="ToolButton" parent="AppBackground/Control/AddTimerDialog/Panel"]
+[node name="OkBtn" type="ToolButton" parent="AppBackground/Control/AddTimerDialog/DialogBackground"]
 margin_left = 195.112
 margin_top = 130.587
 margin_right = 250.112
 margin_bottom = 165.587
-custom_colors/font_color = Color( 0.321569, 0.415686, 0.913725, 1 )
+custom_colors/font_color = Color( 0.207843, 0.294118, 0.835294, 1 )
 text = "OK"
+[connection signal="pressed" from="AppBackground/Control/AddTimerBtn" to="AppBackground/Control/AddTimerDialog" method="_on_AddTimerBtn_pressed" flags=3]
+[connection signal="gui_input" from="AppBackground/Control/AddTimerDialog" to="AppBackground/Control/AddTimerDialog" method="_on_AddTimerDialog_gui_input" flags=3]
+[connection signal="pressed" from="AppBackground/Control/AddTimerDialog/DialogBackground/CancelBtn" to="AppBackground/Control/AddTimerDialog" method="_on_CancelBtn_pressed" flags=3]
+[connection signal="pressed" from="AppBackground/Control/AddTimerDialog/DialogBackground/OkBtn" to="AppBackground/Control/AddTimerDialog" method="_on_OkBtn_pressed" flags=3]
