@@ -1,0 +1,128 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://material_design_theme.tres" type="Theme" id=1]
+[ext_resource path="res://vendor/icons/round_pause_black_24dp.png" type="Texture" id=2]
+[ext_resource path="res://vendor/icons/round_play_arrow_black_24dp.png" type="Texture" id=3]
+[ext_resource path="res://AnimatedSprite.gd" type="Script" id=4]
+[ext_resource path="res://TaskTimer.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+bg_color = Color( 0.980392, 0.960784, 0.960784, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 0.0823529 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0.109804, 0.0980392, 0.0980392, 0.12549 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "default",
+"speed": 60.0
+} ]
+
+[node name="TaskTimer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.0
+margin_bottom = -538.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TaskTimerBackground" type="Panel" parent="."]
+margin_right = 319.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TaskTimerBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="TaskTimerBackground/HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 8, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskTimerBackground/HBoxContainer"]
+margin_left = 12.0
+margin_right = 255.0
+margin_bottom = 62.0
+size_flags_horizontal = 3
+custom_constants/separation = 4
+alignment = 1
+
+[node name="TaskName" type="Label" parent="TaskTimerBackground/HBoxContainer/VBoxContainer"]
+margin_top = 10.0
+margin_right = 243.0
+margin_bottom = 29.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Task"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TaskElapsedTime" type="Label" parent="TaskTimerBackground/HBoxContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 243.0
+margin_bottom = 52.0
+custom_colors/font_color = Color( 0, 0, 0, 0.666667 )
+text = "00:00:00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="Control" parent="TaskTimerBackground/HBoxContainer"]
+margin_left = 259.0
+margin_right = 319.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 60, 60 )
+
+[node name="TimerStartStopButton" type="Button" parent="TaskTimerBackground/HBoxContainer/Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -23.0
+margin_top = -22.5
+margin_right = 23.0
+margin_bottom = 22.5
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+shortcut_in_tooltip = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton"]
+position = Vector2( 22.9227, 21.9543 )
+frames = SubResource( 3 )
+script = ExtResource( 4 )
+[connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton/AnimatedSprite" method="_on_TimerStartStopButton_pressed"]
+[connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="." method="_on_TimerStartStopButton_pressed" flags=3]
