@@ -17,6 +17,7 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0, 0, 0, 0.0823529 )
+border_blend = true
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -36,8 +37,8 @@ animations = [ {
 [node name="TaskTimer" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1.0
-margin_bottom = -538.0
+margin_bottom = -536.0
+rect_min_size = Vector2( 0, 64 )
 theme = ExtResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -45,7 +46,9 @@ __meta__ = {
 }
 
 [node name="TaskTimerBackground" type="Panel" parent="."]
-margin_right = 319.0
+margin_left = 6.0
+margin_top = 3.0
+margin_right = 313.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
 custom_styles/panel = SubResource( 1 )
@@ -64,21 +67,21 @@ __meta__ = {
 
 [node name="Spacer" type="Control" parent="TaskTimerBackground/HBoxContainer"]
 margin_right = 8.0
-margin_bottom = 62.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 8, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TaskTimerBackground/HBoxContainer"]
 margin_left = 12.0
-margin_right = 255.0
-margin_bottom = 62.0
+margin_right = 243.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 custom_constants/separation = 4
 alignment = 1
 
 [node name="TaskName" type="Label" parent="TaskTimerBackground/HBoxContainer/VBoxContainer"]
-margin_top = 10.0
-margin_right = 243.0
-margin_bottom = 29.0
+margin_top = 9.0
+margin_right = 231.0
+margin_bottom = 28.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Task"
 __meta__ = {
@@ -86,19 +89,19 @@ __meta__ = {
 }
 
 [node name="TaskElapsedTime" type="Label" parent="TaskTimerBackground/HBoxContainer/VBoxContainer"]
-margin_top = 33.0
-margin_right = 243.0
-margin_bottom = 52.0
-custom_colors/font_color = Color( 0, 0, 0, 0.666667 )
+margin_top = 32.0
+margin_right = 231.0
+margin_bottom = 51.0
+custom_colors/font_color = Color( 0, 0, 0, 0.6 )
 text = "00:00:00"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Container" type="Control" parent="TaskTimerBackground/HBoxContainer"]
-margin_left = 259.0
-margin_right = 319.0
-margin_bottom = 62.0
+margin_left = 247.0
+margin_right = 307.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
 
 [node name="TimerStartStopButton" type="Button" parent="TaskTimerBackground/HBoxContainer/Container"]
@@ -121,7 +124,10 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton"]
-position = Vector2( 22.9227, 21.9543 )
+modulate = Color( 0, 0, 0, 0.6 )
+show_behind_parent = true
+position = Vector2( 22.7, 20.8407 )
+scale = Vector2( 0.749435, 0.749435 )
 frames = SubResource( 3 )
 script = ExtResource( 4 )
 [connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton/AnimatedSprite" method="_on_TimerStartStopButton_pressed"]

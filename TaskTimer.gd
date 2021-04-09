@@ -1,10 +1,13 @@
 extends Control
 
+signal ELAPSED_TIME_UPDATE
+
 onready var TaskNameLabel = $"TaskTimerBackground/HBoxContainer/VBoxContainer/TaskName"
 onready var TaskElapsedTime = $"TaskTimerBackground/HBoxContainer/VBoxContainer/TaskElapsedTime"
 onready var TimerStartStopButton = $"TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton"
 onready var Icon = $"TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton/AnimatedSprite"
 
+export var id = 0
 export var started = false
 export var elapsedTime = 0.0
 export var taskName = "Hello there"
@@ -15,6 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if started:
 		elapsedTime += delta
+		emit_signal("ELAPSED_TIME_UPDATE", id, elapsedTime)
 		TaskElapsedTime.text = _format_time(elapsedTime, false)
 
 func _on_TimerStartStopButton_pressed() -> void:
