@@ -130,5 +130,7 @@ position = Vector2( 22.7, 20.8407 )
 scale = Vector2( 0.749435, 0.749435 )
 frames = SubResource( 3 )
 script = ExtResource( 4 )
+[connection signal="gui_input" from="." to="." method="_on_TaskTimer_gui_input"]
+[connection signal="gui_input" from="TaskTimerBackground/HBoxContainer/VBoxContainer" to="." method="_on_VBoxContainer_gui_input"]
 [connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton/AnimatedSprite" method="_on_TimerStartStopButton_pressed"]
 [connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="." method="_on_TimerStartStopButton_pressed" flags=3]
