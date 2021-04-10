@@ -24,8 +24,12 @@ export var listOfTasks = [{
 onready var ItemsListComponent = $"AppView/ScrollList/Items"
 
 func _ready() -> void:
+	ItemsListComponent.connect("ITEMS_CHANGED", self, "_on_ItemsListComponent_ITEMS_CHANGED")
 	ItemsListComponent.setItemList(listOfTasks)
 
+func _on_ItemsListComponent_ITEMS_CHANGED(items):
+	listOfTasks = items
+	ItemsListComponent.setItemList(listOfTasks)
 
 func _on_AddTimerDialog_ADD_NEW_TASK(taskName) -> void:
 	var task = Task.new()
@@ -33,3 +37,5 @@ func _on_AddTimerDialog_ADD_NEW_TASK(taskName) -> void:
 	task.taskName = taskName
 	listOfTasks.append(task)
 	ItemsListComponent.setItemList(listOfTasks)
+
+

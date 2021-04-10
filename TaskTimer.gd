@@ -1,6 +1,6 @@
 extends Control
 
-signal ELAPSED_TIME_UPDATE
+signal ELAPSED_TIME_UPDATE(id, elapsedTime)
 
 onready var TaskNameLabel = $"TaskTimerBackground/HBoxContainer/VBoxContainer/TaskName"
 onready var TaskElapsedTime = $"TaskTimerBackground/HBoxContainer/VBoxContainer/TaskElapsedTime"
@@ -14,6 +14,7 @@ export var taskName = "Hello there"
 
 func _ready() -> void:
 	TaskNameLabel.text = taskName
+	TaskElapsedTime.text = _format_time(elapsedTime, false)
 
 func _process(delta: float) -> void:
 	if started:
