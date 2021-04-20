@@ -1,6 +1,7 @@
 extends Control
 
 signal ELAPSED_TIME_UPDATE(id, elapsedTime)
+signal TASK_DELETE(id)
 
 onready var TaskNameLabel = $"TaskTimerBackground/HBoxContainer/VBoxContainer/TaskName"
 onready var TaskElapsedTime = $"TaskTimerBackground/HBoxContainer/VBoxContainer/TaskElapsedTime"
@@ -12,12 +13,25 @@ export var started = false
 export var elapsedTime = 0.0
 export var taskName = "Hello there"
 
+var isDragged = false
+var originalPosition = Vector2()
+var mousePosition = Vector2()
+
 func _ready() -> void:
-#	self.connect("gui_input", self, "_on_gui_input")
 	TaskNameLabel.text = taskName
 	TaskElapsedTime.text = _format_time(elapsedTime, false)
 
 func _process(delta: float) -> void:
+	if isDragged:
+		var pos = get_global_mouse_position()
+		var offset = pos.x - mousePosition.x
+		offset = clamp(offset, -60, 5)
+		var threshold = 60 * 0.75
+		if abs(offset) > threshold:
+			emit_signal("TASK_DELETE", id)
+		else:
+			var newPos = Vector2(originalPosition.x + offset, originalPosition.y)
+			self.set_position(newPos)
 	if started:
 		elapsedTime += delta
 		emit_signal("ELAPSED_TIME_UPDATE", id, elapsedTime)
@@ -25,10 +39,6 @@ func _process(delta: float) -> void:
 
 func _on_TimerStartStopButton_pressed() -> void:
 	started = not started
-
-#func _on_gui_input(event) -> void:
-#	if event.is_action_pressed("ui_context_menu"):
-#		print("CONTEXT MENU ACTIVATED")
 
 func _format_time(time : float, use_milliseconds : bool) -> String:
 	var seconds = fmod(time, 60)
@@ -42,11 +52,23 @@ func _format_time(time : float, use_milliseconds : bool) -> String:
 
 	return "%02d:%02d:%02d:%02d" % [hours, minutes, seconds, milliseconds]
 
-func _on_TaskTimer_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_context_menu"):
-		print("CONTEXT MENU ACTIVATED")
+func start_dragging() -> void:
+	var mousePos = get_global_mouse_position()
+	var elementPos = self.rect_position
+	originalPosition = elementPos
+	mousePosition = mousePos
+	isDragged = true
+#	print("Mouse pos: ", mousePos)
+#	print("Element pos: ", elementPos)
 
+func end_dragging() -> void:
+	self.set_position(originalPosition)
+	originalPosition = Vector2()
+	mousePosition = Vector2()
+	isDragged = false
 
 func _on_VBoxContainer_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_context_menu"):
-		print("CONTEXT MENU ACTIVATED")
+	if event.is_action_pressed("ui_drag"):
+		start_dragging()
+	if event.is_action_released("ui_drag"):
+		end_dragging()

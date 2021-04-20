@@ -18,8 +18,6 @@ _global_script_class_icons={
 config/name="Time After Time"
 config/description="Simple timer app built with Godot, for testing its capabilities as mobile app framework"
 run/main_scene="res://App.tscn"
-run/disable_stdout=true
-run/disable_stderr=true
 run/low_processor_mode=true
 boot_splash/image="res://vendor/splash/time-afer-time-splash.png"
 config/icon="res://vendor/icons/time-afer-time-background.png"
@@ -38,11 +36,15 @@ theme/use_hidpi=true
 
 [input]
 
-ui_context_menu={
+ui_drag={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [rendering]
 

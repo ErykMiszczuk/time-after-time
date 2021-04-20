@@ -47,6 +47,8 @@ __meta__ = {
 [node name="AppView" type="VBoxContainer" parent="AppBackground/DataProvider"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -78,6 +80,8 @@ size_flags_vertical = 3
 [node name="Items" type="VBoxContainer" parent="AppBackground/DataProvider/AppView/ScrollList"]
 margin_right = 320.0
 margin_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0

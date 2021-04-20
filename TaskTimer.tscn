@@ -36,9 +36,10 @@ animations = [ {
 
 [node name="TaskTimer" type="Control"]
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -536.0
-rect_min_size = Vector2( 0, 64 )
+anchor_bottom = 0.11
+margin_bottom = -7.62939e-06
+rect_min_size = Vector2( 320, 64 )
+rect_clip_content = true
 theme = ExtResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -51,14 +52,18 @@ margin_top = 3.0
 margin_right = 313.0
 margin_bottom = 62.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TaskTimerBackground"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 4
 alignment = 1
 __meta__ = {
@@ -75,6 +80,7 @@ margin_left = 12.0
 margin_right = 243.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 4
 alignment = 1
 
@@ -130,7 +136,6 @@ position = Vector2( 22.7, 20.8407 )
 scale = Vector2( 0.749435, 0.749435 )
 frames = SubResource( 3 )
 script = ExtResource( 4 )
-[connection signal="gui_input" from="." to="." method="_on_TaskTimer_gui_input"]
 [connection signal="gui_input" from="TaskTimerBackground/HBoxContainer/VBoxContainer" to="." method="_on_VBoxContainer_gui_input"]
 [connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton/AnimatedSprite" method="_on_TimerStartStopButton_pressed"]
 [connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="." method="_on_TimerStartStopButton_pressed" flags=3]

@@ -22,12 +22,11 @@ func _ready() -> void:
 
 func _on_ItemsListComponent_ITEMS_CHANGED(items):
 	listOfTasks = items
+	if items.size() == 0:
+		print("DELETED ALL ITEMS")
 	ItemsListComponent.setItemList(listOfTasks)
 
 func _on_AddTimerDialog_ADD_NEW_TASK(taskName) -> void:
-#	var task = Task.new()
-#	task.id = OS.get_unix_time()
-#	task.taskName = taskName
 	var task = {
 		"id": OS.get_unix_time(),
 		"taskName": taskName,
@@ -52,7 +51,10 @@ func save_task_list():
 func open_task_list():
 	var f = File.new()
 	f.open("res://taskList.json", File.READ)
-	listOfTasks = parse_json(f.get_line())
+	if f.get_len() <= 0:
+		listOfTasks = []
+	else:
+		listOfTasks = parse_json(f.get_line())
 	f.close()
 
 
