@@ -8,10 +8,10 @@ var itemList = [] setget setItemList, getItemList
 func setItemList(list):
 	itemList = list
 	render_children()
-	
+
 func getItemList():
 	return itemList
-	
+
 func render_children():
 	if not itemList.empty():
 		if self.get_child_count() != itemList.size():

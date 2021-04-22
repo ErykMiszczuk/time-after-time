@@ -168,6 +168,7 @@ text = "OK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="AppBackground/DataProvider/AddTimerBtn" to="AppBackground/DataProvider/AddTimerDialog" method="_on_AddTimerBtn_pressed" flags=3]
 [connection signal="ADD_NEW_TASK" from="AppBackground/DataProvider/AddTimerDialog" to="AppBackground/DataProvider" method="_on_AddTimerDialog_ADD_NEW_TASK" flags=3]
 [connection signal="gui_input" from="AppBackground/DataProvider/AddTimerDialog" to="AppBackground/DataProvider/AddTimerDialog" method="_on_AddTimerDialog_gui_input" flags=3]
