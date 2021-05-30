@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "TaskData",
+"language": "GDScript",
+"path": "res://src/types/TaskData.gd"
+} ]
 _global_script_class_icons={
-
+"TaskData": ""
 }
 
 [application]
@@ -23,6 +28,10 @@ boot_splash/image="res://vendor/splash/time-afer-time-splash.png"
 config/icon="res://vendor/icons/time-afer-time-background.png"
 config/macos_native_icon="res://vendor/icons/time-afer-timex32.icns"
 config/windows_native_icon="res://vendor/icons/time-afer-time.ico"
+
+[autoload]
+
+Tasks="*res://src/store/TasksCollection.gd"
 
 [display]
 
@@ -49,7 +58,7 @@ file_logging/enable_file_logging=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
-quality/2d/use_nvidia_rect_flicker_workaround=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
+quality/2d/use_nvidia_rect_flicker_workaround=true
