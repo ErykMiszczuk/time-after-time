@@ -58,8 +58,6 @@ func start_dragging() -> void:
 	originalPosition = elementPos
 	mousePosition = mousePos
 	isDragged = true
-#	print("Mouse pos: ", mousePos)
-#	print("Element pos: ", elementPos)
 
 func end_dragging() -> void:
 	self.set_position(originalPosition)

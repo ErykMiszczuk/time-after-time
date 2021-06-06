@@ -32,6 +32,7 @@ config/windows_native_icon="res://vendor/icons/time-afer-time.ico"
 [autoload]
 
 Tasks="*res://src/store/TasksCollection.gd"
+SaveDataService="*res://src/services/SaveDataService.gd"
 
 [display]
 

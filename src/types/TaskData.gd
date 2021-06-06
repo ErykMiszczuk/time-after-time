@@ -4,10 +4,10 @@ var id: int
 var taskName: String
 var elapsedTime: float
 
-func _init(id: int, taskName: String = "Task", elapsedTime: float = 0) -> void:
-	id = id
-	taskName = taskName
-	elapsedTime = elapsedTime
+func _init(pid: int, ptaskName: String, pelapsedTime: float) -> void:
+	id = pid
+	taskName = ptaskName
+	elapsedTime = pelapsedTime
 
 func setId(value: int) -> void:
 	self.id = value

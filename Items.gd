@@ -1,18 +1,19 @@
 extends VBoxContainer
 
-signal ITEMS_CHANGED(items)
+var itemComponent = load("src/components/TaskTimer.tscn")
 
-var itemComponent = load("TaskTimer.tscn")
-var itemList = [] setget setItemList, getItemList
+func _ready() -> void:
+	Tasks.connect("TASK_LIST_UPDATED", self, "_on_TASK_LIST_UPDATED_render_items")
+	Tasks.connect("TASK_CREATED", self, "_on_TASK_LIST_UPDATED_render_items")
+	Tasks.connect("TASK_UPDATED", self, "_on_TASK_LIST_UPDATED_render_items")
+	Tasks.connect("TASK_DELETED", self, "_on_TASK_LIST_UPDATED_render_items")
 
-func setItemList(list):
-	itemList = list
-	render_children()
+func _on_TASK_LIST_UPDATED_render_items(item) -> void:
+	print(item)
+	renderItems()
 
-func getItemList():
-	return itemList
-
-func render_children():
+func renderItems():
+	var itemList = Tasks.getTaskList()
 	if not itemList.empty():
 		if self.get_child_count() != itemList.size():
 			if self.get_child_count() > 0:
@@ -35,17 +36,12 @@ func render_children():
 			c.queue_free()
 
 func _on_TaskTimer_ELAPSED_TIME_UPDATE(id, elapsedTime):
-	var listCopy = itemList.duplicate(true)
-	for item in listCopy:
+	var itemsList = Tasks.getTaskList()
+	for item in itemsList:
 		if item.id == id:
-			item.elapsedTime = elapsedTime
-	emit_signal("ITEMS_CHANGED", listCopy)
+			item.setElapsedTime(elapsedTime)
+	Tasks.setTaskList(itemsList)
 
 func _on_TaskTimer_TASK_DELETE(id):
-	var listCopy = itemList.duplicate(true)
-	var index = 0
-	for item in listCopy:
-		if  item.id == id:
-			listCopy.remove(index)
-		index += 1
-	emit_signal("ITEMS_CHANGED", listCopy)
+	Tasks.deleteTask(id)
+

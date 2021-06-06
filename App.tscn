@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://material_design_theme.tres" type="Theme" id=1]
 [ext_resource path="res://card_style.tres" type="StyleBox" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://fab_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://fab_pressed_style.tres" type="StyleBox" id=5]
 [ext_resource path="res://AddTimerDialog.gd" type="Script" id=6]
-[ext_resource path="res://DataProvider.gd" type="Script" id=7]
 [ext_resource path="res://Items.gd" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -36,15 +35,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DataProvider" type="Control" parent="AppBackground"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AppView" type="VBoxContainer" parent="AppBackground/DataProvider"]
+[node name="AppView" type="VBoxContainer" parent="AppBackground"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -54,13 +45,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AppHeader" type="PanelContainer" parent="AppBackground/DataProvider/AppView"]
+[node name="AppHeader" type="PanelContainer" parent="AppBackground/AppView"]
 margin_right = 320.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 custom_styles/panel = SubResource( 1 )
 
-[node name="Label" type="Label" parent="AppBackground/DataProvider/AppView/AppHeader"]
+[node name="Label" type="Label" parent="AppBackground/AppView/AppHeader"]
 margin_left = 8.0
 margin_top = 20.0
 margin_right = 312.0
@@ -70,14 +61,14 @@ text = "TIME AFTER TIME"
 uppercase = true
 max_lines_visible = 1
 
-[node name="ScrollList" type="ScrollContainer" parent="AppBackground/DataProvider/AppView"]
+[node name="ScrollList" type="ScrollContainer" parent="AppBackground/AppView"]
 margin_top = 60.0
 margin_right = 320.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Items" type="VBoxContainer" parent="AppBackground/DataProvider/AppView/ScrollList"]
+[node name="Items" type="VBoxContainer" parent="AppBackground/AppView/ScrollList"]
 margin_right = 320.0
 margin_bottom = 540.0
 grow_horizontal = 2
@@ -87,7 +78,7 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 script = ExtResource( 8 )
 
-[node name="AddTimerBtn" type="Button" parent="AppBackground/DataProvider"]
+[node name="AddTimerBtn" type="Button" parent="AppBackground"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -105,7 +96,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AddTimerDialog" type="PopupDialog" parent="AppBackground/DataProvider"]
+[node name="AddTimerDialog" type="PopupDialog" parent="AppBackground"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 2 )
@@ -114,7 +105,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DialogBackground" type="Panel" parent="AppBackground/DataProvider/AddTimerDialog"]
+[node name="DialogBackground" type="Panel" parent="AppBackground/AddTimerDialog"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -128,7 +119,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DialogTitle" type="Label" parent="AppBackground/DataProvider/AddTimerDialog/DialogBackground"]
+[node name="DialogTitle" type="Label" parent="AppBackground/AddTimerDialog/DialogBackground"]
 margin_left = 16.0229
 margin_top = 13.6633
 margin_right = 121.023
@@ -139,7 +130,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LineEdit" type="LineEdit" parent="AppBackground/DataProvider/AddTimerDialog/DialogBackground"]
+[node name="LineEdit" type="LineEdit" parent="AppBackground/AddTimerDialog/DialogBackground"]
 margin_left = 9.41586
 margin_top = 44.9668
 margin_right = 249.416
@@ -150,7 +141,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CancelBtn" type="ToolButton" parent="AppBackground/DataProvider/AddTimerDialog/DialogBackground"]
+[node name="CancelBtn" type="ToolButton" parent="AppBackground/AddTimerDialog/DialogBackground"]
 margin_left = 107.592
 margin_top = 130.543
 margin_right = 190.592
@@ -158,7 +149,7 @@ margin_bottom = 165.543
 custom_colors/font_color = Color( 0.207843, 0.294118, 0.835294, 1 )
 text = "CANCEL"
 
-[node name="OkBtn" type="ToolButton" parent="AppBackground/DataProvider/AddTimerDialog/DialogBackground"]
+[node name="OkBtn" type="ToolButton" parent="AppBackground/AddTimerDialog/DialogBackground"]
 margin_left = 195.112
 margin_top = 130.587
 margin_right = 250.112
@@ -169,8 +160,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="AppBackground/DataProvider/AddTimerBtn" to="AppBackground/DataProvider/AddTimerDialog" method="_on_AddTimerBtn_pressed" flags=3]
-[connection signal="ADD_NEW_TASK" from="AppBackground/DataProvider/AddTimerDialog" to="AppBackground/DataProvider" method="_on_AddTimerDialog_ADD_NEW_TASK" flags=3]
-[connection signal="gui_input" from="AppBackground/DataProvider/AddTimerDialog" to="AppBackground/DataProvider/AddTimerDialog" method="_on_AddTimerDialog_gui_input" flags=3]
-[connection signal="pressed" from="AppBackground/DataProvider/AddTimerDialog/DialogBackground/CancelBtn" to="AppBackground/DataProvider/AddTimerDialog" method="_on_CancelBtn_pressed" flags=3]
-[connection signal="pressed" from="AppBackground/DataProvider/AddTimerDialog/DialogBackground/OkBtn" to="AppBackground/DataProvider/AddTimerDialog" method="_on_OkBtn_pressed" flags=3]
+[connection signal="pressed" from="AppBackground/AddTimerBtn" to="AppBackground/AddTimerDialog" method="_on_AddTimerBtn_pressed" flags=3]
+[connection signal="gui_input" from="AppBackground/AddTimerDialog" to="AppBackground/AddTimerDialog" method="_on_AddTimerDialog_gui_input" flags=3]
+[connection signal="pressed" from="AppBackground/AddTimerDialog/DialogBackground/CancelBtn" to="AppBackground/AddTimerDialog" method="_on_CancelBtn_pressed" flags=3]
+[connection signal="pressed" from="AppBackground/AddTimerDialog/DialogBackground/OkBtn" to="AppBackground/AddTimerDialog" method="_on_OkBtn_pressed" flags=3]
