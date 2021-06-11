@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://material_design_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/styles/material_design_theme.tres" type="Theme" id=1]
 [ext_resource path="res://vendor/icons/round_pause_black_24dp.png" type="Texture" id=2]
 [ext_resource path="res://vendor/icons/round_play_arrow_black_24dp.png" type="Texture" id=3]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=4]
-[ext_resource path="res://TaskTimer.gd" type="Script" id=5]
+[ext_resource path="res://src/components/TaskTimer.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 16.0
@@ -136,6 +136,7 @@ position = Vector2( 22.7, 20.8407 )
 scale = Vector2( 0.749435, 0.749435 )
 frames = SubResource( 3 )
 script = ExtResource( 4 )
+
 [connection signal="gui_input" from="TaskTimerBackground/HBoxContainer/VBoxContainer" to="." method="_on_VBoxContainer_gui_input"]
 [connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton/AnimatedSprite" method="_on_TimerStartStopButton_pressed"]
 [connection signal="pressed" from="TaskTimerBackground/HBoxContainer/Container/TimerStartStopButton" to="." method="_on_TimerStartStopButton_pressed" flags=3]

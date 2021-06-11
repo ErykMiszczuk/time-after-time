@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 func _on_TimerStartStopButton_pressed() -> void:
 	started = not started
 
-func _format_time(time : float, use_milliseconds : bool) -> String:
+func _format_time(time: float, use_milliseconds: bool) -> String:
 	var seconds = fmod(time, 60)
 	var minutes = fmod(time / 60, 60)
 	var hours = fmod(time / 3600, 60)
@@ -58,8 +58,6 @@ func start_dragging() -> void:
 	originalPosition = elementPos
 	mousePosition = mousePos
 	isDragged = true
-#	print("Mouse pos: ", mousePos)
-#	print("Element pos: ", elementPos)
 
 func end_dragging() -> void:
 	self.set_position(originalPosition)
