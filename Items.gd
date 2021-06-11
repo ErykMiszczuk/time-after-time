@@ -4,15 +4,18 @@ var itemComponent = load("src/components/TaskTimer.tscn")
 
 func _ready() -> void:
 	Tasks.connect("TASK_LIST_UPDATED", self, "_on_TASK_LIST_UPDATED_render_items")
-	Tasks.connect("TASK_CREATED", self, "_on_TASK_LIST_UPDATED_render_items")
-	Tasks.connect("TASK_UPDATED", self, "_on_TASK_LIST_UPDATED_render_items")
-	Tasks.connect("TASK_DELETED", self, "_on_TASK_LIST_UPDATED_render_items")
+	Tasks.connect("TASK_CREATED", self, "_on_TASK_CRUD_render_items")
+	Tasks.connect("TASK_UPDATED", self, "_on_TASK_CRUD_render_items")
+	Tasks.connect("TASK_DELETED", self, "_on_TASK_CRUD_render_items")
 
-func _on_TASK_LIST_UPDATED_render_items(item) -> void:
+func _on_TASK_LIST_UPDATED_render_items() -> void:
+	renderItems()
+
+func _on_TASK_CRUD_render_items(item) -> void:
 	print(item)
 	renderItems()
 
-func renderItems():
+func renderItems() -> void:
 	var itemList = Tasks.getTaskList()
 	if not itemList.empty():
 		if self.get_child_count() != itemList.size():
@@ -35,11 +38,11 @@ func renderItems():
 			self.remove_child(c)
 			c.queue_free()
 
-func _on_TaskTimer_ELAPSED_TIME_UPDATE(id, elapsedTime):
+func _on_TaskTimer_ELAPSED_TIME_UPDATE(id, elapsedTime) -> void:
 	var itemsList = Tasks.getTaskList()
 	for item in itemsList:
 		if item.id == id:
-			item.setElapsedTime(elapsedTime)
+			(item as TaskData).setElapsedTime(elapsedTime)
 	Tasks.setTaskList(itemsList)
 
 func _on_TaskTimer_TASK_DELETE(id):
