@@ -42,7 +42,7 @@ func _on_TaskTimer_ELAPSED_TIME_UPDATE(id, elapsedTime) -> void:
 	var itemsList = Tasks.getTaskList()
 	for item in itemsList:
 		if item.id == id:
-			(item as TaskData).setElapsedTime(elapsedTime)
+			item.elapsedTime = elapsedTime
 	Tasks.setTaskList(itemsList)
 
 func _on_TaskTimer_TASK_DELETE(id):
